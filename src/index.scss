@@ -1,6 +1,9 @@
+@import 'var.scss';
+
 .test {
     color: #f00;
-    font-size: 40px;
+    width: 50px;
+    @include ellipsis;
 
     .test2 {
         color: green;

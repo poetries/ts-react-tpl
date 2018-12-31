@@ -1,5 +1,7 @@
 const path = require('path')
 const HtmlwebpackPlugin = require('html-webpack-plugin')
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
+
 const { resolve } = require('./utils')
 const constants = require('./constants')
 const { cacheLoader } = require('./rules/loaders')
@@ -45,6 +47,12 @@ module.exports = {
                 // include: [path.join(__dirname, '../', 'src')],
                 use: [
                     'style-loader',
+                    {
+                        loader: 'cache-loader',
+                        options: {
+                            cacheDirectory: path.join(__dirname, '../', '.cache-loader')
+                        }
+                    },
                    {
                        loader: 'typings-for-css-modules-loader',
                        options: {
@@ -57,7 +65,7 @@ module.exports = {
                    {
                         loader: 'sass-loader',
                         options: {
-                           
+                           includePaths: [path.join(__dirname, '../', 'src/styles')]
                         }
                    }
                 ]
@@ -65,11 +73,18 @@ module.exports = {
         ]
     },
     resolve: {
-        extensions: ['.ts', '.tsx', '.js', '.jsx']
+        extensions: ['.ts', '.tsx', '.js', '.jsx'],
+        alias: {
+            '@components': path.join(__dirname, '../', 'src/components')
+        }
     },
     plugins: [
         new HtmlwebpackPlugin({
             template: 'public/index.html'
+        }),
+        new TsconfigPathsPlugin({
+            // 配置文件引入 tsconfig.json
+            configFile: path.join(__dirname, '../', 'tsconfig.json')
         })
     ]
 }
