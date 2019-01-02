@@ -1,12 +1,23 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import  * as styles from './index.scss'
+import { configure } from 'mobx'
+import { Provider } from 'mobx-react'
 
 import Test from '@components/Test'
+import * as store from './store'
+import Counter from '@views/Counter'
+
+configure({enforceActions: 'observed'})
 
 const render = () => {
     ReactDOM.render(
-        <Test />,
+        <Provider {...store}>
+            <div>
+                <Test /><br />
+                <Counter />
+            </div>
+        </Provider>,
         document.querySelector('#app')
     )
 }

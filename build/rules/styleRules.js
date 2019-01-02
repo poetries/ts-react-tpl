@@ -1,5 +1,8 @@
 const {resolve} = require('../utils')
 const theme = require('../../src/theme')
+const constants = require('../constants')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+
 
 module.exports = [
     {
@@ -7,7 +10,7 @@ module.exports = [
         // 只针对node_modules里面的less文件进行编译
         include: [resolve('node_modules')],
         use: [
-            'style-loader',
+            constants.APP_ENV == 'dev'? 'style-loader':MiniCssExtractPlugin.loader,
             'css-loader',
             {
                 loader: 'less-loader',
@@ -25,7 +28,7 @@ module.exports = [
         // 只针对src下的.scss文件进行编译
         // include: [path.join(__dirname, '../', 'src')],
         use: [
-            'style-loader',
+            constants.APP_ENV == 'dev'?'style-loader': MiniCssExtractPlugin.loader,
             {
                 loader: 'cache-loader',
                 options: {
