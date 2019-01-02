@@ -7,6 +7,7 @@ import { Provider } from 'mobx-react'
 import Test from '@components/Test'
 import * as store from './store'
 import Counter from '@views/Counter'
+import App from '@shared/App'
 
 configure({enforceActions: 'observed'})
 
@@ -15,7 +16,8 @@ const render = () => {
         <Provider {...store}>
             <div>
                 <Test /><br />
-                <Counter />
+                <Counter /><br />
+                <App />
             </div>
         </Provider>,
         document.querySelector('#app')
