@@ -2,10 +2,10 @@ import * as React from 'react'
 
 import {ComponentExt} from '@utils/reactExt'
 
-class Home extends ComponentExt {
+class Page extends ComponentExt {
     render() {
         return (
-            <div>Page</div>
+            <div>Home</div>
         )
     }
 }

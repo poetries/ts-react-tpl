@@ -3,15 +3,14 @@ import { hot } from 'react-hot-loader'
 import { HashRouter as Router, Switch, Route } from 'react-router-dom'
 import Loadable from 'react-loadable'
 
-
 const Home = Loadable({
     loader: () => import(/* webpackChunkName: "home" */'@views/Home'),
-    loading: ()=><div>Home Loading...</div>
+    loading: () => <div>Home Loading...</div>
 })
 
 const Page = Loadable({
     loader: () => import(/* webpackChunkName: "page" */'@views/Page'),
-    loading: ()=><div>Page Loading...</div>
+    loading: () => <div>Page Loading...</div>
 })
 
 @hot(module)
